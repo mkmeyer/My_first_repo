@@ -68,6 +68,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Section2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Section2_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -340,6 +369,371 @@ $row.names
 -57.9876589   0.3392512   4.7081605 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#no helper function for rank: rank(fit)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ifthenelse" class="level1">
+<h1>if/then/else</h1>
+<p>Fizz buzz challenge - take in a number - if it is divisible by 3 return fizz - if it is divisible by 5 return buzz - if it is divisible by 15 return fizz buzz</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">15</span>) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"fizz buzz"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">5</span>) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"buzz"</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"fizz"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"whoops?"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "whoops?"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!(number %% 15))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loops" class="level1">
+<h1>Loops</h1>
+<p>Wrap the fizz buzz code into a loop to check for multiple values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(number <span class="cf">in</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">41</span>) {</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">15</span>) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"fizz buzz"</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">5</span>) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"buzz"</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>((number <span class="sc">%%</span> <span class="dv">3</span>) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"fizz"</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"whoops?"</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "whoops?"
+[1] "fizz buzz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "whoops?"
+[1] "buzz"
+[1] "fizz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "buzz"
+[1] "whoops?"
+[1] "fizz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz buzz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "whoops?"
+[1] "buzz"
+[1] "fizz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "buzz"
+[1] "whoops?"
+[1] "fizz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz buzz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "whoops?"
+[1] "buzz"
+[1] "fizz"
+[1] "whoops?"
+[1] "whoops?"
+[1] "fizz"
+[1] "buzz"
+[1] "whoops?"</code></pre>
+</div>
+</div>
+</section>
+<section id="writing-in-r-functions" class="level1">
+<h1>Writing in R Functions</h1>
+<p>Normal approximation to the binomial</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#probabilities from a binomial RV</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 6.366806e-07 1.091452e-05 9.121424e-05 4.951630e-04 1.962968e-03
+ [6] 6.057157e-03 1.514289e-02 3.152194e-02 5.572629e-02 8.491625e-02
+[11] 1.128173e-01 1.318644e-01 1.365738e-01 1.260681e-01 1.041992e-01
+[16] 7.740510e-02 5.183378e-02 3.136161e-02 1.717422e-02 8.522543e-03
+[21] 3.835144e-03 1.565365e-03 5.793884e-04 1.943290e-04 5.899274e-05
+[26] 1.618087e-05 4.000763e-06 8.890585e-07 1.769045e-07 3.137223e-08
+[31] 4.929921e-09 6.815560e-10 8.215184e-11 8.535256e-12 7.531108e-13
+[36] 5.533059e-14 3.293487e-15 1.525940e-16 5.162955e-18 1.134715e-19
+[41] 1.215767e-21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot with plot</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> prob), <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>norm_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from  =</span> <span class="dv">0</span>, <span class="at">to =</span> n, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(norm_x, <span class="at">mean =</span> n<span class="sc">*</span>prob, <span class="at">sd =</span> <span class="fu">sqrt</span>(n<span class="sc">*</span>prob<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>prob)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1] 2.607632e-05 2.760874e-05 2.922563e-05 3.093131e-05 3.273029e-05
+   [6] 3.462729e-05 3.662725e-05 3.873533e-05 4.095691e-05 4.329765e-05
+  [11] 4.576343e-05 4.836040e-05 5.109499e-05 5.397391e-05 5.700417e-05
+  [16] 6.019305e-05 6.354820e-05 6.707756e-05 7.078943e-05 7.469244e-05
+  [21] 7.879560e-05 8.310831e-05 8.764033e-05 9.240185e-05 9.740348e-05
+  [26] 1.026562e-04 1.081716e-04 1.139616e-04 1.200386e-04 1.264154e-04
+  [31] 1.331057e-04 1.401232e-04 1.474826e-04 1.551989e-04 1.632877e-04
+  [36] 1.717653e-04 1.806486e-04 1.899551e-04 1.997028e-04 2.099108e-04
+  [41] 2.205984e-04 2.317859e-04 2.434943e-04 2.557453e-04 2.685615e-04
+  [46] 2.819661e-04 2.959832e-04 3.106379e-04 3.259560e-04 3.419641e-04
+  [51] 3.586899e-04 3.761621e-04 3.944100e-04 4.134642e-04 4.333563e-04
+  [56] 4.541186e-04 4.757849e-04 4.983898e-04 5.219690e-04 5.465595e-04
+  [61] 5.721992e-04 5.989274e-04 6.267844e-04 6.558119e-04 6.860528e-04
+  [66] 7.175513e-04 7.503526e-04 7.845037e-04 8.200526e-04 8.570487e-04
+  [71] 8.955430e-04 9.355876e-04 9.772363e-04 1.020544e-03 1.065568e-03
+  [76] 1.112366e-03 1.160998e-03 1.211524e-03 1.264008e-03 1.318514e-03
+  [81] 1.375108e-03 1.433857e-03 1.494831e-03 1.558101e-03 1.623738e-03
+  [86] 1.691818e-03 1.762416e-03 1.835609e-03 1.911477e-03 1.990101e-03
+  [91] 2.071564e-03 2.155949e-03 2.243344e-03 2.333836e-03 2.427516e-03
+  [96] 2.524473e-03 2.624802e-03 2.728598e-03 2.835956e-03 2.946977e-03
+ [101] 3.061759e-03 3.180404e-03 3.303017e-03 3.429702e-03 3.560567e-03
+ [106] 3.695719e-03 3.835270e-03 3.979330e-03 4.128014e-03 4.281435e-03
+ [111] 4.439712e-03 4.602961e-03 4.771302e-03 4.944855e-03 5.123744e-03
+ [116] 5.308091e-03 5.498021e-03 5.693661e-03 5.895136e-03 6.102577e-03
+ [121] 6.316111e-03 6.535869e-03 6.761983e-03 6.994584e-03 7.233806e-03
+ [126] 7.479781e-03 7.732645e-03 7.992531e-03 8.259576e-03 8.533914e-03
+ [131] 8.815681e-03 9.105013e-03 9.402047e-03 9.706918e-03 1.001976e-02
+ [136] 1.034072e-02 1.066991e-02 1.100749e-02 1.135358e-02 1.170832e-02
+ [141] 1.207183e-02 1.244426e-02 1.282573e-02 1.321636e-02 1.361630e-02
+ [146] 1.402567e-02 1.444458e-02 1.487316e-02 1.531154e-02 1.575984e-02
+ [151] 1.621816e-02 1.668663e-02 1.716535e-02 1.765443e-02 1.815399e-02
+ [156] 1.866412e-02 1.918492e-02 1.971649e-02 2.025892e-02 2.081231e-02
+ [161] 2.137673e-02 2.195226e-02 2.253899e-02 2.313698e-02 2.374631e-02
+ [166] 2.436703e-02 2.499921e-02 2.564289e-02 2.629813e-02 2.696496e-02
+ [171] 2.764343e-02 2.833356e-02 2.903537e-02 2.974889e-02 3.047413e-02
+ [176] 3.121109e-02 3.195978e-02 3.272017e-02 3.349227e-02 3.427604e-02
+ [181] 3.507146e-02 3.587849e-02 3.669708e-02 3.752719e-02 3.836875e-02
+ [186] 3.922170e-02 4.008596e-02 4.096145e-02 4.184806e-02 4.274571e-02
+ [191] 4.365428e-02 4.457366e-02 4.550371e-02 4.644430e-02 4.739529e-02
+ [196] 4.835653e-02 4.932784e-02 5.030905e-02 5.130000e-02 5.230048e-02
+ [201] 5.331029e-02 5.432924e-02 5.535709e-02 5.639363e-02 5.743861e-02
+ [206] 5.849178e-02 5.955291e-02 6.062171e-02 6.169791e-02 6.278124e-02
+ [211] 6.387140e-02 6.496809e-02 6.607100e-02 6.717980e-02 6.829418e-02
+ [216] 6.941380e-02 7.053831e-02 7.166735e-02 7.280057e-02 7.393759e-02
+ [221] 7.507805e-02 7.622154e-02 7.736769e-02 7.851608e-02 7.966631e-02
+ [226] 8.081796e-02 8.197062e-02 8.312385e-02 8.427722e-02 8.543029e-02
+ [231] 8.658260e-02 8.773372e-02 8.888317e-02 9.003049e-02 9.117522e-02
+ [236] 9.231689e-02 9.345501e-02 9.458911e-02 9.571870e-02 9.684330e-02
+ [241] 9.796241e-02 9.907554e-02 1.001822e-01 1.012819e-01 1.023741e-01
+ [246] 1.034584e-01 1.045341e-01 1.056009e-01 1.066583e-01 1.077056e-01
+ [251] 1.087425e-01 1.097685e-01 1.107829e-01 1.117854e-01 1.127755e-01
+ [256] 1.137525e-01 1.147162e-01 1.156660e-01 1.166013e-01 1.175218e-01
+ [261] 1.184270e-01 1.193163e-01 1.201894e-01 1.210458e-01 1.218850e-01
+ [266] 1.227066e-01 1.235101e-01 1.242952e-01 1.250615e-01 1.258084e-01
+ [271] 1.265356e-01 1.272428e-01 1.279295e-01 1.285953e-01 1.292400e-01
+ [276] 1.298631e-01 1.304643e-01 1.310432e-01 1.315997e-01 1.321332e-01
+ [281] 1.326436e-01 1.331306e-01 1.335938e-01 1.340331e-01 1.344482e-01
+ [286] 1.348388e-01 1.352047e-01 1.355457e-01 1.358617e-01 1.361525e-01
+ [291] 1.364178e-01 1.366575e-01 1.368716e-01 1.370598e-01 1.372220e-01
+ [296] 1.373583e-01 1.374685e-01 1.375524e-01 1.376102e-01 1.376417e-01
+ [301] 1.376470e-01 1.376260e-01 1.375787e-01 1.375052e-01 1.374055e-01
+ [306] 1.372797e-01 1.371278e-01 1.369499e-01 1.367462e-01 1.365167e-01
+ [311] 1.362616e-01 1.359811e-01 1.356752e-01 1.353441e-01 1.349881e-01
+ [316] 1.346073e-01 1.342020e-01 1.337724e-01 1.333187e-01 1.328412e-01
+ [321] 1.323402e-01 1.318158e-01 1.312685e-01 1.306985e-01 1.301062e-01
+ [326] 1.294918e-01 1.288558e-01 1.281984e-01 1.275200e-01 1.268209e-01
+ [331] 1.261017e-01 1.253626e-01 1.246040e-01 1.238264e-01 1.230302e-01
+ [336] 1.222158e-01 1.213835e-01 1.205340e-01 1.196675e-01 1.187846e-01
+ [341] 1.178857e-01 1.169713e-01 1.160419e-01 1.150978e-01 1.141397e-01
+ [346] 1.131679e-01 1.121829e-01 1.111854e-01 1.101756e-01 1.091542e-01
+ [351] 1.081217e-01 1.070784e-01 1.060250e-01 1.049620e-01 1.038897e-01
+ [356] 1.028088e-01 1.017197e-01 1.006229e-01 9.951901e-02 9.840841e-02
+ [361] 9.729163e-02 9.616917e-02 9.504152e-02 9.390916e-02 9.277259e-02
+ [366] 9.163228e-02 9.048872e-02 8.934238e-02 8.819372e-02 8.704322e-02
+ [371] 8.589133e-02 8.473851e-02 8.358521e-02 8.243187e-02 8.127893e-02
+ [376] 8.012682e-02 7.897597e-02 7.782680e-02 7.667970e-02 7.553510e-02
+ [381] 7.439339e-02 7.325494e-02 7.212016e-02 7.098940e-02 6.986303e-02
+ [386] 6.874142e-02 6.762491e-02 6.651383e-02 6.540852e-02 6.430931e-02
+ [391] 6.321650e-02 6.213041e-02 6.105132e-02 5.997952e-02 5.891529e-02
+ [396] 5.785891e-02 5.681062e-02 5.577068e-02 5.473932e-02 5.371679e-02
+ [401] 5.270330e-02 5.169906e-02 5.070427e-02 4.971914e-02 4.874385e-02
+ [406] 4.777857e-02 4.682346e-02 4.587869e-02 4.494441e-02 4.402075e-02
+ [411] 4.310784e-02 4.220581e-02 4.131476e-02 4.043481e-02 3.956605e-02
+ [416] 3.870857e-02 3.786245e-02 3.702775e-02 3.620454e-02 3.539288e-02
+ [421] 3.459281e-02 3.380438e-02 3.302761e-02 3.226253e-02 3.150916e-02
+ [426] 3.076751e-02 3.003758e-02 2.931938e-02 2.861288e-02 2.791808e-02
+ [431] 2.723495e-02 2.656347e-02 2.590360e-02 2.525530e-02 2.461853e-02
+ [436] 2.399323e-02 2.337935e-02 2.277683e-02 2.218560e-02 2.160560e-02
+ [441] 2.103675e-02 2.047896e-02 1.993216e-02 1.939625e-02 1.887115e-02
+ [446] 1.835677e-02 1.785299e-02 1.735973e-02 1.687688e-02 1.640432e-02
+ [451] 1.594196e-02 1.548967e-02 1.504733e-02 1.461485e-02 1.419208e-02
+ [456] 1.377891e-02 1.337522e-02 1.298087e-02 1.259575e-02 1.221972e-02
+ [461] 1.185266e-02 1.149443e-02 1.114490e-02 1.080393e-02 1.047140e-02
+ [466] 1.014716e-02 9.831092e-03 9.523048e-03 9.222895e-03 8.930499e-03
+ [471] 8.645722e-03 8.368428e-03 8.098483e-03 7.835749e-03 7.580093e-03
+ [476] 7.331378e-03 7.089471e-03 6.854238e-03 6.625545e-03 6.403260e-03
+ [481] 6.187252e-03 5.977389e-03 5.773543e-03 5.575585e-03 5.383386e-03
+ [486] 5.196821e-03 5.015764e-03 4.840091e-03 4.669679e-03 4.504408e-03
+ [491] 4.344157e-03 4.188807e-03 4.038242e-03 3.892346e-03 3.751005e-03
+ [496] 3.614107e-03 3.481541e-03 3.353197e-03 3.228967e-03 3.108747e-03
+ [501] 2.992432e-03 2.879919e-03 2.771108e-03 2.665899e-03 2.564195e-03
+ [506] 2.465900e-03 2.370921e-03 2.279164e-03 2.190541e-03 2.104962e-03
+ [511] 2.022341e-03 1.942591e-03 1.865631e-03 1.791377e-03 1.719751e-03
+ [516] 1.650673e-03 1.584068e-03 1.519860e-03 1.457976e-03 1.398345e-03
+ [521] 1.340897e-03 1.285564e-03 1.232279e-03 1.180977e-03 1.131595e-03
+ [526] 1.084071e-03 1.038345e-03 9.943573e-04 9.520516e-04 9.113718e-04
+ [531] 8.722637e-04 8.346745e-04 7.985528e-04 7.638484e-04 7.305129e-04
+ [536] 6.984988e-04 6.677603e-04 6.382526e-04 6.099324e-04 5.827576e-04
+ [541] 5.566873e-04 5.316818e-04 5.077025e-04 4.847123e-04 4.626748e-04
+ [546] 4.415549e-04 4.213187e-04 4.019332e-04 3.833664e-04 3.655876e-04
+ [551] 3.485667e-04 3.322749e-04 3.166840e-04 3.017672e-04 2.874980e-04
+ [556] 2.738514e-04 2.608027e-04 2.483283e-04 2.364055e-04 2.250122e-04
+ [561] 2.141271e-04 2.037297e-04 1.938002e-04 1.843194e-04 1.752690e-04
+ [566] 1.666312e-04 1.583888e-04 1.505254e-04 1.430251e-04 1.358726e-04
+ [571] 1.290532e-04 1.225526e-04 1.163572e-04 1.104540e-04 1.048302e-04
+ [576] 9.947382e-05 9.437308e-05 8.951682e-05 8.489424e-05 8.049500e-05
+ [581] 7.630917e-05 7.232720e-05 6.853993e-05 6.493859e-05 6.151472e-05
+ [586] 5.826026e-05 5.516745e-05 5.222886e-05 4.943736e-05 4.678612e-05
+ [591] 4.426862e-05 4.187859e-05 3.961003e-05 3.745721e-05 3.541464e-05
+ [596] 3.347706e-05 3.163945e-05 2.989700e-05 2.824512e-05 2.667942e-05
+ [601] 2.519570e-05 2.378995e-05 2.245835e-05 2.119723e-05 2.000312e-05
+ [606] 1.887267e-05 1.780270e-05 1.679020e-05 1.583225e-05 1.492611e-05
+ [611] 1.406915e-05 1.325886e-05 1.249285e-05 1.176885e-05 1.108469e-05
+ [616] 1.043831e-05 9.827753e-06 9.251138e-06 8.706692e-06 8.192725e-06
+ [621] 7.707626e-06 7.249867e-06 6.817992e-06 6.410621e-06 6.026440e-06
+ [626] 5.664201e-06 5.322720e-06 5.000871e-06 4.697587e-06 4.411854e-06
+ [631] 4.142710e-06 3.889242e-06 3.650586e-06 3.425921e-06 3.214468e-06
+ [636] 3.015492e-06 2.828292e-06 2.652207e-06 2.486610e-06 2.330907e-06
+ [641] 2.184538e-06 2.046968e-06 1.917696e-06 1.796246e-06 1.682165e-06
+ [646] 1.575030e-06 1.474436e-06 1.380003e-06 1.291373e-06 1.208203e-06
+ [651] 1.130175e-06 1.056984e-06 9.883443e-07 9.239856e-07 8.636530e-07
+ [656] 8.071058e-07 7.541170e-07 7.044727e-07 6.579709e-07 6.144213e-07
+ [661] 5.736447e-07 5.354721e-07 4.997443e-07 4.663113e-07 4.350319e-07
+ [666] 4.057732e-07 3.784101e-07 3.528249e-07 3.289068e-07 3.065516e-07
+ [671] 2.856614e-07 2.661439e-07 2.479126e-07 2.308861e-07 2.149879e-07
+ [676] 2.001462e-07 1.862936e-07 1.733667e-07 1.613059e-07 1.500556e-07
+ [681] 1.395633e-07 1.297798e-07 1.206592e-07 1.121581e-07 1.042361e-07
+ [686] 9.685513e-08 8.997965e-08 8.357628e-08 7.761379e-08 7.206292e-08
+ [691] 6.689627e-08 6.208821e-08 5.761472e-08 5.345334e-08 4.958307e-08
+ [696] 4.598424e-08 4.263848e-08 3.952862e-08 3.663858e-08 3.395335e-08
+ [701] 3.145893e-08 2.914219e-08 2.699092e-08 2.499368e-08 2.313981e-08
+ [706] 2.141936e-08 1.982305e-08 1.834220e-08 1.696874e-08 1.569512e-08
+ [711] 1.451433e-08 1.341981e-08 1.240546e-08 1.146559e-08 1.059491e-08
+ [716] 9.788479e-09 9.041702e-09 8.350304e-09 7.710304e-09 7.117997e-09
+ [721] 6.569938e-09 6.062919e-09 5.593961e-09 5.160291e-09 4.759333e-09
+ [726] 4.388691e-09 4.046142e-09 3.729618e-09 3.437199e-09 3.167102e-09
+ [731] 2.917673e-09 2.687375e-09 2.474783e-09 2.278573e-09 2.097519e-09
+ [736] 1.930483e-09 1.776410e-09 1.634322e-09 1.503312e-09 1.382540e-09
+ [741] 1.271227e-09 1.168654e-09 1.074152e-09 9.871039e-10 9.069367e-10
+ [746] 8.331212e-10 7.651675e-10 7.026223e-10 6.450665e-10 5.921124e-10
+ [751] 5.434016e-10 4.986029e-10 4.574102e-10 4.195405e-10 3.847327e-10
+ [756] 3.527455e-10 3.233560e-10 2.963586e-10 2.715633e-10 2.487952e-10
+ [761] 2.278924e-10 2.087059e-10 1.910983e-10 1.749428e-10 1.601225e-10
+ [766] 1.465298e-10 1.340653e-10 1.226377e-10 1.121628e-10 1.025630e-10
+ [771] 9.376696e-11 8.570891e-11 7.832839e-11 7.156975e-11 6.538182e-11
+ [776] 5.971749e-11 5.453348e-11 4.978999e-11 4.545042e-11 4.148116e-11
+ [781] 3.785132e-11 3.453252e-11 3.149870e-11 2.872593e-11 2.619224e-11
+ [786] 2.387747e-11 2.176312e-11 1.983220e-11 1.806916e-11 1.645971e-11
+ [791] 1.499075e-11 1.365028e-11 1.242731e-11 1.131175e-11 1.029436e-11
+ [796] 9.366692e-12 8.520991e-12 7.750169e-12 7.047730e-12 6.407735e-12
+ [801] 5.824744e-12 5.293785e-12 4.810308e-12 4.370152e-12 3.969514e-12
+ [806] 3.604917e-12 3.273183e-12 2.971409e-12 2.696943e-12 2.447361e-12
+ [811] 2.220453e-12 2.014198e-12 1.826753e-12 1.656436e-12 1.501711e-12
+ [816] 1.361180e-12 1.233564e-12 1.117699e-12 1.012524e-12 9.170705e-13
+ [821] 8.304573e-13 7.518808e-13 6.806092e-13 6.159759e-13 5.573741e-13
+ [826] 5.042512e-13 4.561043e-13 4.124758e-13 3.729495e-13 3.371464e-13
+ [831] 3.047223e-13 2.753640e-13 2.487866e-13 2.247315e-13 2.029636e-13
+ [836] 1.832692e-13 1.654542e-13 1.493425e-13 1.347739e-13 1.216034e-13
+ [841] 1.096989e-13 9.894101e-14 8.922105e-14 8.044064e-14 7.251048e-14
+ [846] 6.534963e-14 5.888472e-14 5.304925e-14 4.778295e-14 4.303123e-14
+ [851] 3.874464e-14 3.487841e-14 3.139199e-14 2.824868e-14 2.541526e-14
+ [856] 2.286167e-14 2.056073e-14 1.848784e-14 1.662077e-14 1.493940e-14
+ [861] 1.342555e-14 1.206280e-14 1.083631e-14 9.732668e-15 8.739757e-15
+ [866] 7.846645e-15 7.043454e-15 6.321273e-15 5.672055e-15 5.088544e-15
+ [871] 4.564189e-15 4.093087e-15 3.669909e-15 3.289855e-15 2.948597e-15
+ [876] 2.642233e-15 2.367249e-15 2.120479e-15 1.899070e-15 1.700455e-15
+ [881] 1.522322e-15 1.362589e-15 1.219383e-15 1.091020e-15 9.759838e-16
+ [886] 8.729100e-16 7.805728e-16 6.978699e-16 6.238104e-16 5.575039e-16
+ [891] 4.981502e-16 4.450305e-16 3.974993e-16 3.549769e-16 3.169429e-16
+ [896] 2.829299e-16 2.525189e-16 2.253337e-16 2.010367e-16 1.793254e-16
+ [901] 1.599283e-16 1.426021e-16 1.271287e-16 1.133127e-16 1.009789e-16
+ [906] 8.997037e-17 8.014671e-17 7.138205e-17 6.356373e-17 5.659094e-17
+ [911] 5.037343e-17 4.483047e-17 3.988982e-17 3.548690e-17 3.156393e-17
+ [916] 2.806928e-17 2.495678e-17 2.218518e-17 1.971762e-17 1.752117e-17
+ [921] 1.556642e-17 1.382712e-17 1.227981e-17 1.090357e-17 9.679723e-18
+ [926] 8.591604e-18 7.624347e-18 6.764694e-18 6.000823e-18 5.322192e-18
+ [931] 4.719406e-18 4.184093e-18 3.708792e-18 3.286855e-18 2.912366e-18
+ [936] 2.580051e-18 2.285219e-18 2.023692e-18 1.791753e-18 1.586095e-18
+ [941] 1.403774e-18 1.242173e-18 1.098966e-18 9.720836e-19 8.596863e-19
+ [946] 7.601399e-19 6.719921e-19 5.939528e-19 5.248761e-19 4.637445e-19
+ [951] 4.096546e-19 3.618046e-19 3.194827e-19 2.820576e-19 2.489690e-19
+ [956] 2.197202e-19 1.938705e-19 1.710293e-19 1.508504e-19 1.330269e-19
+ [961] 1.172870e-19 1.033897e-19 9.112165e-20 8.029400e-20 7.073946e-20
+ [966] 6.230996e-20 5.487447e-20 4.831704e-20 4.253510e-20 3.743791e-20
+ [971] 3.294526e-20 2.898621e-20 2.549805e-20 2.242537e-20 1.971920e-20
+ [976] 1.733629e-20 1.523843e-20 1.339187e-20 1.176683e-20 1.033701e-20
+ [981] 9.079193e-21 7.972908e-21 7.000087e-21 6.144792e-21 5.392971e-21
+ [986] 4.732232e-21 4.151654e-21 3.641609e-21 3.193616e-21 2.800200e-21
+ [991] 2.454781e-21 2.151559e-21 1.885433e-21 1.651908e-21 1.447031e-21
+ [996] 1.267322e-21 1.109720e-21 9.715309e-22 8.503879e-22 7.442085e-22</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(norm_x, <span class="fu">dnorm</span>(norm_x, <span class="at">mean =</span> n<span class="sc">*</span>prob, <span class="at">sd =</span> <span class="fu">sqrt</span>(n<span class="sc">*</span>prob<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>prob))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Section2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>let’s write a function to make this plot for any <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>plot_norm_approx <span class="ot">&lt;-</span> <span class="cf">function</span>(n, prob) {</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#plot with plot</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> prob), <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  norm_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from  =</span> <span class="dv">0</span>, <span class="at">to =</span> n, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(norm_x, <span class="fu">dnorm</span>(norm_x, </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mean =</span> n<span class="sc">*</span>prob, </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sd =</span> <span class="fu">sqrt</span>(n<span class="sc">*</span>prob<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>prob))))</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Test it</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_norm_approx</span>(<span class="dv">30</span>, <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Section2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Add some default values</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>plot_norm_approx <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">prob =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#plot with plot</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="fu">dbinom</span>(<span class="dv">0</span><span class="sc">:</span>n, <span class="at">size =</span> n, <span class="at">prob =</span> prob), <span class="at">type =</span> <span class="st">"h"</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  norm_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from  =</span> <span class="dv">0</span>, <span class="at">to =</span> n, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(norm_x, <span class="fu">dnorm</span>(norm_x, </span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mean =</span> n<span class="sc">*</span>prob, </span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sd =</span> <span class="fu">sqrt</span>(n<span class="sc">*</span>prob<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>prob))))</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Test it</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_norm_approx</span>(<span class="at">prob =</span> <span class="fl">0.1</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Section2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 
